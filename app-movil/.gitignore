@@ -1,0 +1,163 @@
+# Expo generated
+# @generated expo-cli sync-2b81b286409207a5da26e14c78851eb30d8ccbdb
+expo-env.d.ts
+# @end expo-cli
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.*
+.pnpm-store/
+
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Keep lockfiles tracked
+!pnpm-lock.yaml
+!package-lock.json
+!yarn.lock
+
+# Expo / Metro / React Native cache
+.expo/
+.expo-shared/
+.metro-cache/
+.rncache/
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Web build outputs
+dist/
+dist-export-validation/
+web-build/
+.expo/web/cache/
+
+# Native build outputs
+android/
+ios/
+*.apk
+*.aab
+*.ipa
+*.app
+*.xcarchive
+
+# EAS
+.eas/
+eas-build-*.tar.gz
+credentials.json
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.local.example
+!.env.railway.example
+!.env.production.example
+!.env.staging.example
+
+# Deployment / framework caches
+.vercel/
+.turbo/
+.swc/
+.npm/
+.yarn/*
+!.yarn/releases/
+!.yarn/plugins/
+!.yarn/sdks/
+!.yarn/versions/
+
+# TypeScript
+*.tsbuildinfo
+
+# Tests / coverage
+coverage/
+.nyc_output/
+jest-results.json
+playwright-report/
+test-results/
+
+# Logs and runtime output
+logs/
+*.log
+.runtime-logs/
+*.pid
+*.seed
+*.pid.lock
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.local
+*.tgz
+*.heapsnapshot
+
+# Local certificates / secrets
+*.pem
+*.key
+*.p8
+*.p12
+*.crt
+*.cert
+*.mobileprovision
+.env.vault
+service-account*.json
+secrets/
+
+# Firebase client config supplied locally or as EAS file variables
+/firebase/google-services.json
+/firebase/GoogleService-Info.plist
+!/firebase/README.md
+
+# Android local files
+local.properties
+*.keystore
+*.jks
+
+# iOS local files
+DerivedData/
+Pods/
+Podfile.lock
+
+# Crash / diagnostic files
+*.hprof
+
+# Misc build artifacts
+build/
+release/
+
+# Local Kids4Safe data and private diagnostics (never publish)
+.runtime/
+.runtime-logs/
+/local-storage/
+/local-data/
+*.private.json
+*.private.csv
+*-accesos-locales.txt
+*.har
+*.heapsnapshot

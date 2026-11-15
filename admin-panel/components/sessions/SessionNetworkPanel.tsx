@@ -1,0 +1,10 @@
+import { Globe, MapPin, Navigation } from 'lucide-react';
+import type { ActiveSession } from '@/lib/admin-api';
+import { Button } from '@/components/ui/button';
+export function SessionNetworkPanel({ session, coordinates }: { session: ActiveSession; coordinates: { latitude: number; longitude: number } | null }) {
+  const location = session.location as any;
+  return <div className="grid min-w-0 items-start gap-4 lg:grid-cols-2">
+    <section className="space-y-4 rounded-2xl border border-border bg-white p-4 sm:p-5"><h3 className="flex items-center gap-2 text-sm font-semibold"><Globe className="h-4 w-4 text-primary" />Conexión de red</h3><dl className="kids-session-definition text-sm"><div><dt>Dirección IP</dt><dd className="font-mono">{(session as any).ipAddress || session.ip || 'No disponible'}</dd></div>{(location?.country || (session as any).country) && <div><dt>País</dt><dd>{location?.country || (session as any).country}</dd></div>}{(location?.city || (session as any).city) && <div><dt>Ciudad</dt><dd>{location?.city || (session as any).city}</dd></div>}</dl></section>
+    <section className="space-y-4 rounded-2xl border border-border bg-white p-4 sm:p-5"><h3 className="flex items-center gap-2 text-sm font-semibold"><MapPin className="h-4 w-4 text-primary" />Ubicación GPS</h3>{coordinates ? <><dl className="kids-session-definition text-sm"><div><dt>Latitud</dt><dd className="font-mono">{coordinates.latitude.toFixed(6)}°</dd></div><div><dt>Longitud</dt><dd className="font-mono">{coordinates.longitude.toFixed(6)}°</dd></div><div><dt>Precisión</dt><dd>{session.location?.accuracy != null ? `±${session.location.accuracy} m` : 'No disponible'}</dd></div></dl><Button asChild variant="outline" size="sm" className="w-full gap-2 sm:w-auto"><a href={`https://www.google.com/maps?q=${coordinates.latitude},${coordinates.longitude}`} target="_blank" rel="noopener noreferrer"><Navigation className="h-3.5 w-3.5" />Abrir en Google Maps</a></Button></> : <p className="text-sm leading-relaxed text-muted-foreground">Esta sesión no tiene una ubicación GPS disponible.</p>}</section>
+  </div>;
+}

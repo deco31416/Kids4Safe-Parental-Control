@@ -1,0 +1,14 @@
+-c constraints.txt
+fastapi==0.141.1
+starlette==1.6.0
+uvicorn[standard]==0.52.3
+pydantic==2.13.4
+pydantic-settings==2.15.0
+redis==8.1.0
+python-dotenv==1.2.3
+pillow==12.3.0
+aiortc==1.15.0
+av==17.1.0
+python-socketio[client]==5.16.3
+requests==2.34.2
+urllib3==2.8.0

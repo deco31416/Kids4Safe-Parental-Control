@@ -1,0 +1,4 @@
+-c ../constraints.txt
+fastapi==0.139.2
+pydantic==2.12.5
+pydantic-settings==2.14.2

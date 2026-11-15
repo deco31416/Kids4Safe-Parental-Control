@@ -1,0 +1,115 @@
+{
+  "expo": {
+    "name": "Kids4Safe",
+    "slug": "bloomprotect-mobile",
+    "scheme": "bloomprotect",
+    "version": "1.0.4",
+    "orientation": "portrait",
+    "icon": "./public/icon.png",
+    "newArchEnabled": false,
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F1F8FF",
+    "splash": {
+      "image": "./public/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F1F8FF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bloomprotect.mobile",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Kids4Safe necesita acceso a camara frontal y trasera para documentar emergencias.",
+        "NSMicrophoneUsageDescription": "Kids4Safe necesita acceso al microfono para documentar audio ambiental durante una emergencia.",
+        "NSLocationWhenInUseUsageDescription": "Kids4Safe necesita tu ubicacion para que los servicios de emergencia puedan localizarte.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Kids4Safe necesita ubicacion en segundo plano durante Auxilio para mantener informados a los servicios de emergencia.",
+        "NSBluetoothAlwaysUsageDescription": "Kids4Safe usa Bluetooth para vincular accesorios de seguridad cercanos.",
+        "NSPhotoLibraryUsageDescription": "Kids4Safe necesita acceso a tus fotos para actualizar tu imagen de perfil.",
+        "NSFaceIDUsageDescription": "Kids4Safe puede usar Face ID para permitir acceso rapido y seguro a tu cuenta.",
+        "UIBackgroundModes": [
+          "location",
+          "bluetooth-central"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.bloomprotect.mobile",
+      "adaptiveIcon": {
+        "foregroundImage": "./public/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "FOREGROUND_SERVICE_MEDIA_PROJECTION",
+        "POST_NOTIFICATIONS",
+        "BLUETOOTH",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN"
+      ],
+      "backgroundColor": "#F1F8FF"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Kids4Safe necesita acceso a camara frontal y trasera para documentar emergencias.",
+          "microphonePermission": "Kids4Safe necesita acceso al microfono para documentar audio ambiental durante una emergencia."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "isAndroidBackgroundLocationEnabled": true,
+          "isIosBackgroundLocationEnabled": true,
+          "locationAlwaysAndWhenInUsePermission": "Kids4Safe necesita ubicacion en segundo plano durante Auxilio para mantener informados a los servicios de emergencia.",
+          "locationWhenInUsePermission": "Kids4Safe necesita tu ubicacion para que los servicios de emergencia puedan localizarte."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Kids4Safe necesita acceso a tus fotos para actualizar tu imagen de perfil."
+        }
+      ],
+      "expo-notifications",
+      "expo-secure-store",
+      "expo-font",
+      [
+        "@config-plugins/react-native-webrtc",
+        {
+          "cameraPermission": "Kids4Safe necesita acceso a camara para transmitir video durante una emergencia.",
+          "microphonePermission": "Kids4Safe necesita acceso al microfono para transmitir audio durante una emergencia."
+        }
+      ],
+      "./plugins/withWebRtcMediaProjection",
+      [
+        "react-native-ble-plx",
+        {
+          "bluetoothAlwaysPermission": "Kids4Safe usa Bluetooth para vincular accesorios de seguridad cercanos."
+        }
+      ],
+      "expo-audio"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "autolinkingModuleResolution": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "xxxxxxxxxx-xxxxxxxx"
+      }
+    },
+    "web": {
+      "favicon": "./public/brand/favicon.png"
+    }
+  }
+}

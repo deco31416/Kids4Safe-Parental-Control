@@ -1,0 +1,105 @@
+.page {
+  --error-navy: #0b2454;
+  --error-blue: #1265c8;
+  --error-muted: #566985;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  color: var(--error-navy);
+  background: radial-gradient(ellipse at 15% 47%, #e3f5fb 0, transparent 52%), #f1f8ff;
+  font-family: var(--font-inter), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.page * { box-sizing: border-box; }
+.page a { text-decoration: none; }
+.page a:focus-visible { outline: 3px solid #20b9be; outline-offset: 5px; border-radius: 8px; }
+.skipLink { position: fixed; top: -100px; left: 20px; padding: 12px 18px; background: #fff; border-radius: 16px; z-index: 10; }
+.skipLink:focus { top: 16px; }
+.header, .footer { width: min(1200px, calc(100% - 64px)); margin-inline: auto; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 100px; }
+.brand { display: inline-flex; font-size: 28px; }
+.headerNote { color: var(--error-muted); font-size: 13px; }
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: 60px;
+  flex: 1;
+  width: min(1120px, calc(100% - 64px));
+  margin-inline: auto;
+  padding-block: 56px 72px;
+}
+.illustration { position: relative; display: grid; place-items: center; min-width: 0; min-height: 340px; isolation: isolate; }
+.orbit {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border: 1px solid #d5ebf4;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e1f6f8, #ebf5ff);
+  box-shadow: 0 0 0 26px rgb(255 255 255 / 26%);
+  z-index: -2;
+}
+.orbit::after { content: ''; position: absolute; inset: 19px; border: 1px solid rgb(255 255 255 / 90%); border-radius: 50%; }
+.route { position: absolute; width: 100%; max-width: 460px; bottom: -13px; z-index: -1; }
+.errorCode { display: flex; align-items: center; justify-content: center; color: var(--error-blue); font-size: clamp(150px, 16vw, 218px); line-height: 1; font-weight: 800; letter-spacing: -12px; padding-right: 12px; }
+.zero { color: #119eae; }
+.compass { position: absolute; left: 9%; bottom: 25px; display: grid; place-items: center; width: 70px; height: 70px; border: 1px solid #d3e9f3; border-radius: 24px; background: #fff; color: #07949d; box-shadow: 0 10px 30px rgb(11 36 84 / 7%); transform: rotate(-10deg); }
+.copy { min-width: 0; }
+.eyebrow { margin-bottom: 18px; color: var(--error-blue); font-size: 12px; line-height: 1.7; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+.copy h1 { max-width: 520px; font-size: clamp(38px, 4.3vw, 56px); line-height: 1.13; font-weight: 800; letter-spacing: -2px; }
+.description { max-width: 480px; margin-top: 24px; color: var(--error-muted); font-size: 17px; line-height: 1.9; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 32px; }
+.primaryButton { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; padding: 10px 11px 10px 24px; min-height: 58px; border-radius: 999px; color: #fff; background: linear-gradient(110deg, #1265c8, #0b2454); font-size: 15px; font-weight: 700; box-shadow: 0 10px 24px rgb(18 101 200 / 15%); transition: transform 180ms, box-shadow 180ms; }
+.primaryButton:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgb(18 101 200 / 23%); }
+.buttonArrow { display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #168fe0; }
+.secondaryLink { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; color: var(--error-blue); font-size: 14px; font-weight: 600; }
+.secondaryLink:hover { color: var(--error-navy); }
+.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; padding-block: 25px; border-top: 1px solid #dae9f5; color: var(--error-muted); font-size: 12px; line-height: 1.8; }
+.footer nav { display: flex; flex-wrap: wrap; gap: 22px; }
+.footer a:hover { color: var(--error-blue); }
+@media (max-width: 1000px) {
+  .main { gap: 36px; }
+  .orbit { width: 290px; height: 290px; }
+  .errorCode { font-size: 170px; }
+  .compass { left: 4%; }
+}
+@media (max-width: 760px) {
+  .header, .footer, .main { width: calc(100% - 40px); }
+  .header { min-height: 84px; }
+  .brand { font-size: 26px; }
+  .headerNote { display: none; }
+  .main { grid-template-columns: 1fr; gap: 24px; padding-block: 22px 52px; }
+  .illustration { min-height: 235px; max-width: 380px; width: 100%; margin-inline: auto; }
+  .orbit { width: 220px; height: 220px; box-shadow: 0 0 0 16px rgb(255 255 255 / 26%); }
+  .errorCode { font-size: 148px; letter-spacing: -9px; padding-right: 9px; }
+  .route { max-width: 320px; bottom: -10px; }
+  .compass { width: 55px; height: 55px; left: 9%; bottom: 10px; border-radius: 19px; }
+  .compass svg { width: 25px; height: 25px; }
+  .copy { text-align: center; }
+  .copy h1 { font-size: 42px; max-width: 480px; margin-inline: auto; letter-spacing: -1.5px; }
+  .description { max-width: 500px; margin: 20px auto 0; font-size: 16px; line-height: 1.8; }
+  .actions { justify-content: center; gap: 12px 22px; margin-top: 25px; }
+  .footer { justify-content: center; text-align: center; gap: 12px; }
+}
+@media (max-width: 400px) {
+  .header, .footer, .main { width: calc(100% - 32px); }
+  .header { min-height: 78px; }
+  .brand { font-size: 24px; }
+  .brand img { width: 32px; height: 32px; }
+  .main { padding-top: 16px; gap: 18px; }
+  .illustration { min-height: 205px; }
+  .orbit { width: 190px; height: 190px; }
+  .errorCode { font-size: 126px; letter-spacing: -8px; padding-right: 8px; }
+  .compass { left: 4%; width: 48px; height: 48px; bottom: 3px; border-radius: 17px; }
+  .eyebrow { font-size: 10px; letter-spacing: 1px; margin-bottom: 14px; }
+  .copy h1 { font-size: 35px; }
+  .description { font-size: 15px; }
+  .actions { flex-direction: column; gap: 8px; }
+  .primaryButton { width: 100%; justify-content: space-between; }
+  .footer nav { gap: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page * { transition: none !important; }
+}

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte Forense - Sesión {{sessionId}}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 10pt;
+      line-height: 1.4;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+    }
+
+    .header h1 {
+      font-size: 24pt;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .header p {
+      font-size: 11pt;
+      opacity: 0.95;
+    }
+
+    .qr-code {
+      text-align: center;
+      margin: 20px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .qr-code img {
+      width: 150px;
+      height: 150px;
+      border: 3px solid #667eea;
+      border-radius: 8px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 14pt;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .metadata-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .metadata-item {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+
+    .metadata-label {
+      font-weight: bold;
+      color: #667eea;
+      font-size: 9pt;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .metadata-value {
+      font-size: 10pt;
+      color: #1a1a1a;
+      word-break: break-word;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 9pt;
+    }
+
+    thead {
+      background: #667eea;
+      color: white;
+    }
+
+    th {
+      padding: 10px;
+      text-align: left;
+      font-weight: bold;
+      font-size: 9pt;
+    }
+
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    tbody tr:hover {
+      background: #e8f0fe;
+    }
+
+    .event-type {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 8pt;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .event-type-session { background: #e3f2fd; color: #1976d2; }
+    .event-type-location { background: #e8f5e9; color: #388e3c; }
+    .event-type-forensic { background: #fff3e0; color: #f57c00; }
+    .event-type-critical { background: #ffebee; color: #c62828; }
+
+    .iso-compliance {
+      background: #e8f5e9;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 30px 0;
+    }
+
+    .iso-compliance h3 {
+      color: #2e7d32;
+      font-size: 12pt;
+      margin-bottom: 15px;
+    }
+
+    .iso-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .iso-item {
+      padding: 10px;
+      background: white;
+      border-radius: 4px;
+    }
+
+    .chain-of-custody {
+      background: #fff3e0;
+      border: 2px solid #ff9800;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 30px 0;
+    }
+
+    .chain-of-custody h3 {
+      color: #e65100;
+      font-size: 12pt;
+      margin-bottom: 15px;
+    }
+
+    .hash-value {
+      font-family: 'Courier New', monospace;
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      word-break: break-all;
+      font-size: 8pt;
+      color: #d84315;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #e0e0e0;
+      text-align: center;
+      font-size: 9pt;
+      color: #666;
+    }
+
+    .footer p {
+      margin: 5px 0;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      color: #999;
+      font-style: italic;
+    }
+
+    @media print {
+      .section {
+        page-break-inside: avoid;
+      }
+      .header {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🔐 Reporte Forense de Sesión</h1>
+    <p>Kids4Safe v1.0.0-staging - Forensic Session Tracking Platform</p>
+    <p>Documento admisible como evidencia legal (ISO 19115 compliant)</p>
+  </div>
+
+  <!-- QR CODE -->
+  <div class="qr-code">
+    <img src="{{qrCodeDataUrl}}" alt="QR Code {{qrId}}" />
+    <p style="margin-top: 10px; font-weight: bold; color: #667eea;">QR ID: {{qrId}}</p>
+  </div>
+
+  <!-- METADATA SESSION -->
+  <div class="section">
+    <h2 class="section-title">📋 Metadatos de Sesión</h2>
+    <div class="metadata-grid">
+      <div class="metadata-item">
+        <div class="metadata-label">Session ID</div>
+        <div class="metadata-value">{{sessionId}}</div>
+      </div>
+      <div class="metadata-item">
+        <div class="metadata-label">Estado</div>
+        <div class="metadata-value">{{status}}</div>
+      </div>
+      <div class="metadata-item">
+        <div class="metadata-label">Inicio</div>
+        <div class="metadata-value">{{startTime}}</div>
+      </div>
+      <div class="metadata-item">
+        <div class="metadata-label">Fin</div>
+        <div class="metadata-value">{{endTime}}</div>
+      </div>
+      <div class="metadata-item">
+        <div class="metadata-label">Duración</div>
+        <div class="metadata-value">{{duration}}</div>
+      </div>
+      <div class="metadata-item">
+        <div class="metadata-label">User Agent</div>
+        <div class="metadata-value" style="font-size: 8pt;">{{deviceInfo.userAgent}}</div>
+      </div>
+      <div class="metadata-item">
+        <div class="metadata-label">Plataforma</div>
+        <div class="metadata-value">{{deviceInfo.platform}}</div>
+      </div>
+      <div class="metadata-item">
+        <div class="metadata-label">Resolución Pantalla</div>
+        <div class="metadata-value">{{deviceInfo.screenResolution}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORENSIC TIMELINE -->
+  <div class="section">
+    <h2 class="section-title">⏱️ Forensic Timeline ({{forensicEvents.length}} eventos)</h2>
+    {{#if forensicEvents.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp (UTC)</th>
+          <th>Evento</th>
+          <th>Detalles</th>
+          <th>Hash SHA-256</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each forensicEvents}}
+        <tr>
+          <td style="white-space: nowrap;">{{this.timestamp}}</td>
+          <td>
+            <span class="event-type event-type-{{#if (contains this.eventType 'SESSION')}}session{{else if (contains this.eventType 'LOCATION')}}location{{else if (contains this.eventType 'TAB')}}forensic{{else}}critical{{/if}}">
+              {{this.eventType}}
+            </span>
+          </td>
+          <td style="font-size: 8pt; max-width: 200px; word-break: break-word;">{{this.details}}</td>
+          <td style="font-family: 'Courier New', monospace; font-size: 7pt; word-break: break-all;">{{this.hash}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <div class="no-data">No hay eventos forenses registrados</div>
+    {{/if}}
+  </div>
+
+  <!-- GPS ROUTE -->
+  <div class="section">
+    <h2 class="section-title">📍 Ruta GPS ({{locations.length}} puntos)</h2>
+    {{#if locations.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp (UTC)</th>
+          <th>Latitud</th>
+          <th>Longitud</th>
+          <th>Precisión</th>
+          <th>Fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each locations}}
+        <tr>
+          <td style="white-space: nowrap;">{{this.timestamp}}</td>
+          <td>{{this.latitude}}</td>
+          <td>{{this.longitude}}</td>
+          <td>{{this.accuracy}}</td>
+          <td>{{this.source}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <div class="no-data">No hay datos de geolocalización</div>
+    {{/if}}
+  </div>
+
+  <!-- SCREENSHOTS -->
+  <div class="section">
+    <h2 class="section-title">📸 Screenshots ({{screenshots.length}} capturas)</h2>
+    {{#if screenshots.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp (UTC)</th>
+          <th>URL de evidencia</th>
+          <th>Tamaño</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each screenshots}}
+        <tr>
+          <td style="white-space: nowrap;">{{this.timestamp}}</td>
+          <td style="font-size: 7pt; word-break: break-all;">{{this.url}}</td>
+          <td>{{this.size}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <div class="no-data">No hay screenshots capturadas</div>
+    {{/if}}
+  </div>
+
+  <!-- RECORDINGS -->
+  <div class="section">
+    <h2 class="section-title">🎥 Grabaciones ({{recordings.length}} videos)</h2>
+    {{#if recordings.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp (UTC)</th>
+          <th>URL de evidencia</th>
+          <th>Duración</th>
+          <th>Tamaño</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each recordings}}
+        <tr>
+          <td style="white-space: nowrap;">{{this.timestamp}}</td>
+          <td style="font-size: 7pt; word-break: break-all;">{{this.url}}</td>
+          <td>{{this.duration}}</td>
+          <td>{{this.size}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <div class="no-data">No hay grabaciones de video</div>
+    {{/if}}
+  </div>
+
+  <!-- ISO 19115 COMPLIANCE -->
+  <div class="iso-compliance">
+    <h3>🌍 ISO 19115 - Metadata Geográfico Internacional</h3>
+    <div class="iso-grid">
+      <div class="iso-item">
+        <div class="metadata-label">Sistema de Coordenadas</div>
+        <div class="metadata-value">{{iso19115.coordinateSystem}}</div>
+      </div>
+      <div class="iso-item">
+        <div class="metadata-label">Precisión</div>
+        <div class="metadata-value">{{iso19115.accuracy}}</div>
+      </div>
+      <div class="iso-item">
+        <div class="metadata-label">Linaje (Lineage)</div>
+        <div class="metadata-value">{{iso19115.lineage}}</div>
+      </div>
+      <div class="iso-item">
+        <div class="metadata-label">Fecha Generación</div>
+        <div class="metadata-value">{{iso19115.dateGenerated}}</div>
+      </div>
+      <div class="iso-item" style="grid-column: span 2;">
+        <div class="metadata-label">Extensión Espacial</div>
+        <div class="metadata-value">{{iso19115.spatialExtent}}</div>
+      </div>
+    </div>
+    <p style="margin-top: 15px; font-size: 9pt; color: #2e7d32;">
+      ✅ Este documento cumple con el estándar internacional ISO 19115:2014 para metadata geográfico y es admisible como evidencia legal en tribunales.
+    </p>
+  </div>
+
+  <!-- CHAIN OF CUSTODY -->
+  <div class="chain-of-custody">
+    <h3>🔒 Chain of Custody (Cadena de Custodia)</h3>
+    <div class="metadata-item" style="margin-bottom: 10px;">
+      <div class="metadata-label">Algoritmo</div>
+      <div class="metadata-value">{{chainOfCustody.algorithm}}</div>
+    </div>
+    <div class="metadata-item" style="margin-bottom: 10px;">
+      <div class="metadata-label">Hash de Sesión (SHA-256)</div>
+      <div class="hash-value">{{chainOfCustody.sessionHash}}</div>
+    </div>
+    <div class="metadata-item">
+      <div class="metadata-label">Timestamp Verificación</div>
+      <div class="metadata-value">{{chainOfCustody.timestamp}}</div>
+    </div>
+    <p style="margin-top: 15px; font-size: 9pt; color: #e65100;">
+      ⚠️ Cualquier modificación posterior a los datos de esta sesión resultará en un hash SHA-256 diferente, invalidando la cadena de custodia. Este hash garantiza la integridad de la evidencia.
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p><strong>Kids4Safe {{version}}</strong> - Forensic Session Tracking Platform</p>
+    <p>Reporte generado: {{generatedAt}}</p>
+    <p>Este documento es confidencial y está protegido por GDPR/LOPD. TTL: 90 días desde fin de sesión.</p>
+    <p style="margin-top: 10px; font-size: 8pt; color: #999;">
+      © 2026 Kids4Safe. Todos los derechos reservados. ISO 19115 compliant.
+    </p>
+  </div>
+
+</body>
+</html>

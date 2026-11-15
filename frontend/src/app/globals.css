@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: #1265C8;
+    --primary-dark: #0B2454;
+    --brand-secondary: #168FE0;
+    --brand-accent: #20B9BE;
+    --brand-background: #F1F8FF;
+    --surface: #FFFFFF;
+    --input-background: #EAF4FF;
+    --text-primary: #0B2454;
+    --text-secondary: #66758F;
+    --gradient-button: linear-gradient(110deg, #1265C8, #0B2454);
+    --gradient-brand: linear-gradient(135deg, #168FE0, #20B9BE);
+
+    /* Enterprise Light Theme - Inspired by Vercel/Linear/Stripe */
+    --background: 210.0000 100.0000% 97.2549%;
+    --foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Elevated surfaces */
+    --card: 0.0000 0.0000% 100.0000%;
+    --card-foreground: 219.4521 76.8421% 18.6275%;
+    --card-elevated: 211.4286 100.0000% 95.8824%;
+    
+    --popover: 0.0000 0.0000% 100.0000%;
+    --popover-foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Primary - Blue sophisticated */
+    --primary: 212.6374 83.4862% 42.7451%;
+    --primary-foreground: 0.0000 0.0000% 100.0000%;
+    --primary-hover: 219.4521 76.8421% 18.6275%;
+    
+    /* Secondary - Neutral elegant */
+    --secondary: 211.4286 100.0000% 95.8824%;
+    --secondary-foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Muted - Subtle backgrounds */
+    --muted: 211.4286 100.0000% 95.8824%;
+    --muted-foreground: 218.0488 16.7347% 48.0392%;
+    
+    /* Accent - Purple elegant */
+    --accent: 211.4286 100.0000% 95.8824%;
+    --accent-foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Semantic colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders - Minimal */
+    --border: 210.8571 71.4286% 90.3922%;
+    --border-subtle: 211.4286 100.0000% 95.8824%;
+    --input: 210.8571 71.4286% 90.3922%;
+    
+    /* Focus ring */
+    --ring: 212.6374 83.4862% 42.7451%;
+    
+    /* Radius - Modern */
+    --radius: 0.75rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  }
+
+  .dark {
+    /* Elegant Dark Theme - NOT flat black */
+    --background: 210.0000 100.0000% 97.2549%;
+    --foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Elevated surfaces - layered depth */
+    --card: 0.0000 0.0000% 100.0000%;
+    --card-foreground: 219.4521 76.8421% 18.6275%;
+    --card-elevated: 211.4286 100.0000% 95.8824%;
+    
+    --popover: 0.0000 0.0000% 100.0000%;
+    --popover-foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Primary - Brighter in dark mode */
+    --primary: 212.6374 83.4862% 42.7451%;
+    --primary-foreground: 0.0000 0.0000% 100.0000%;
+    --primary-hover: 219.4521 76.8421% 18.6275%;
+    
+    /* Secondary - Elevated surface */
+    --secondary: 211.4286 100.0000% 95.8824%;
+    --secondary-foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Muted - Subtle contrast */
+    --muted: 211.4286 100.0000% 95.8824%;
+    --muted-foreground: 218.0488 16.7347% 48.0392%;
+    
+    /* Accent - Purple vibrant */
+    --accent: 211.4286 100.0000% 95.8824%;
+    --accent-foreground: 219.4521 76.8421% 18.6275%;
+    
+    /* Semantic colors - adjusted for dark */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders - Subtle in dark */
+    --border: 210.8571 71.4286% 90.3922%;
+    --border-subtle: 211.4286 100.0000% 95.8824%;
+    --input: 210.8571 71.4286% 90.3922%;
+    
+    /* Focus ring */
+    --ring: 212.6374 83.4862% 42.7451%;
+    
+    /* Shadows - More pronounced in dark */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    background: hsl(var(--background));
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* ========================================
+   ELEVATED SURFACES (SOBER)
+   ======================================== */
+.elevated {
+  background: hsl(var(--card-elevated));
+  box-shadow: var(--shadow-md);
+}
+
+.surface {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border-subtle));
+}
+
+/* ========================================
+   PREMIUM CARDS (NO HARSH BORDERS)
+   ======================================== */
+.card-premium {
+  background: hsl(var(--card));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-premium:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-premium-elevated {
+  background: hsl(var(--card-elevated));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   SUBTLE DIVIDERS (SPACE, NOT LINES)
+   ======================================== */
+.divider-subtle {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--border-subtle)),
+    transparent
+  );
+}
+

@@ -1,0 +1,28 @@
+{
+  "name": "Kids4Safe",
+  "palette": {
+    "primary": "#1265C8",
+    "primaryDark": "#0B2454",
+    "secondary": "#168FE0",
+    "accent": "#20B9BE",
+    "background": "#F1F8FF",
+    "surface": "#FFFFFF",
+    "inputBackground": "#EAF4FF",
+    "textPrimary": "#0B2454",
+    "textSecondary": "#66758F"
+  },
+  "gradients": {
+    "button": "linear-gradient(110deg, #1265C8, #0B2454)",
+    "brand": "linear-gradient(135deg, #168FE0, #20B9BE)"
+  },
+  "assets": {
+    "logo": "logo.png",
+    "favicon": "favicon.png",
+    "source": "Provided by the user. Originals copied without visual changes.",
+    "illustration": {
+      "file": "family-landscape.png",
+      "method": "Built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: a wide illustrated footer panorama for a family safety mobile app named Kids4Safe. Create ONLY the illustration, no UI, no text, no logos. Soft polished hand-painted digital illustration: a mother seen from behind seated with her young son, her arm gently around his shoulders, placed in the right third, facing a peaceful distant city skyline and rolling hills. Rounded leafy plants frame both lower corners, soft clouds and a few tiny birds, gentle morning light. Palette icy white #F1F8FF sky fading to white at the entire top edge, layered muted light blues and turquoise #20B9BE landscapes, navy #0B2454 foliage, blue clothes, natural warm skin and brown hair. Trustworthy, protective, affectionate, contemporary family brand. Very wide horizontal composition, 3:1 aspect ratio, no borders. Keep all figures safely inside canvas with space above heads, top quarter mostly pale sky. Detailed but restrained, suitable for mobile onboarding, serene rather than childish."
+    }
+  }
+}

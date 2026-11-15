@@ -1,0 +1,61 @@
+# Environment configuration and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+**/secrets/
+**/credentials.json
+**/service-account*.json
+**/*service-account*.json
+**/*.pem
+**/*.key
+**/*.p8
+**/*.p12
+**/*.pfx
+**/*.jks
+**/*.keystore
+**/*.mobileprovision
+**/firebase/google-services.json
+**/firebase/GoogleService-Info.plist
+
+# Dependencies and virtual environments
+**/node_modules/
+**/.venv/
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.tox/
+
+# Build and tool output
+**/.next/
+**/dist/
+**/build/
+**/coverage/
+**/.expo/
+**/.expo-shared/
+**/web-build/
+**/android/
+**/ios/
+**/.gradle/
+**/.turbo/
+**/.cache/
+
+# Local runtime data and diagnostics
+**/.runtime/
+**/local-storage/
+**/logs/
+**/*.log
+**/*.dump
+**/*.sqlite
+**/*.sqlite3
+**/*.db
+**/*.bak
+**/*.tmp
+**/.DS_Store
+Thumbs.db
+
+# Preserve package manager lockfiles and public example environment files.
+
+
